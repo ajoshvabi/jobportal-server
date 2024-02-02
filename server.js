@@ -3,8 +3,8 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 require("dotenv").config();
-const cors =require('cors');
 const mongoose = require('mongoose');
+const cors =require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
@@ -24,9 +24,9 @@ mongoose.connect(process.env.MONGODB_URL, {
 });
 
 // app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
-app.use(cors());
 app.use(session({
   secret:'893d64c310bcfdc2bd00e8a723b7c2b097f7d11d4963aae24dcefb3aac2dc9e081d87128e5761960b500cc0f1c02b97b89fb297184976c41b62c04ae60e1dc5c',
   resave:false,
