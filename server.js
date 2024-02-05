@@ -17,7 +17,7 @@ const apiData =  require('./routes/userController')
 const jobData= require('./routes/jobController')
 const hrData= require('./routes/hrController')
 
-
+app.set("trust proxy", 1);
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
