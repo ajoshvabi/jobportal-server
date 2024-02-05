@@ -24,7 +24,12 @@ mongoose.connect(process.env.MONGODB_URL, {
 });
 
 // app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://aj-job.netlify.app',
+    credentials: true,
+  })
+);
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(session({
