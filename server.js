@@ -5,6 +5,7 @@ const port = process.env.PORT || 5000;
 require("dotenv").config();
 const mongoose = require('mongoose');
 const cors =require('cors');
+app.options('*', cors()) 
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
@@ -35,6 +36,9 @@ app.use(
     credentials: true,
   })
 );
+
+
+
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(session({
