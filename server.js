@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const cors =require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 // const mongoose = require('mongoose');
 // const ObjectId = mongoose.Types.ObjectId;
@@ -17,11 +17,16 @@ const apiData =  require('./routes/userController')
 const jobData= require('./routes/jobController')
 const hrData= require('./routes/hrController')
 
-app.set("trust proxy", 1);
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+var store = new MongoDBStore({
+  uri: process.env.MONGODB_URL,
+  collection: 'mySessions'
+});
+
 
 // app.use(bodyParser.json());
 app.use(
@@ -37,7 +42,9 @@ app.use(session({
   resave:false,
   saveUninitialized: true,
   cookie: { secure: false },
+  store: store
 }));
+app.set("trust proxy", 1);
 
 app.use(express.json());
 
