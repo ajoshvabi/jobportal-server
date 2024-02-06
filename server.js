@@ -36,21 +36,20 @@ var store = new MongoDBStore({
 //     credentials: true,
 //   })
 // );
-frontendUrl="https://aj-job.netlify.app"
-const allowedOrigins = [frontendUrl];
 const corsOptions = {
   origin: function (origin, callback) {
-      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-          callback(null, true);
-      } else {
-          callback(new Error('Not allowed by CORS'));
-      }
+    if (origin && origin.indexOf('https://aj-job.netlify.app') !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
   },
   credentials: true,
   methods: ['GET', 'POST', 'PATCH'],
 };
 
 app.use(cors(corsOptions));
+
 
 
 app.use(bodyParser.json({ limit: '10mb' }));
