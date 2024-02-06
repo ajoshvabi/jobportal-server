@@ -5,7 +5,7 @@ const port = process.env.PORT || 5000;
 require("dotenv").config();
 const mongoose = require('mongoose');
 const cors =require('cors');
-app.options('*', cors()) 
+// app.options('*', cors()) 
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
@@ -30,26 +30,12 @@ var store = new MongoDBStore({
 
 
 // app.use(bodyParser.json());
-// app.use(
-//   cors({
-//     origin: 'https://aj-job.netlify.app',
-//     credentials: true,
-//   })
-// );
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (origin && origin === 'https://aj-job.netlify.app') {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PATCH'],
-};
-
-
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: 'https://aj-job.netlify.app',
+    credentials: true,
+  })
+);
 
 
 
@@ -81,14 +67,14 @@ app.listen(port, () => {
 
 
 
-
-    // useEffect(async ()=>{
-    //     console.log("my home")
-    //     try {
-    //         const response = await fetch('job/userhomedata', {
-    //         })
-    //     } catch (error) {
-    //       console.error('An error occurred:', error);
-    //     }
-
-    //     },[]);
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (origin && origin === 'https://aj-job.netlify.app') {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PATCH'],
+// };
