@@ -30,12 +30,21 @@ var store = new MongoDBStore({
 
 
 // app.use(bodyParser.json());
-app.use(
-  cors({
-    origin: 'https://aj-job.netlify.app',
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: 'https://aj-job.netlify.app',
+//     credentials: true,
+//   })
+// );
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://aj-job.netlify.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+
 
 
 
