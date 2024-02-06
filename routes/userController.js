@@ -128,6 +128,17 @@ router.post('/login', async (req, res) => {
             } else if (loginData.usertype === 2) {
               userTypeString = 'hr';
             }
+
+            req.session.save(err => {
+              if (err) {
+                // handle error
+                console.error(err);
+                res.status(500).json({ error: 'Internal server error' });
+              } else {
+                // Send the response
+                res.status(201).json({ user: result, usertype: userTypeString });
+              }
+            });
             res.status(201).json({ user: result,usertype: userTypeString  });
           } else {
             // console.log("Login failed");
