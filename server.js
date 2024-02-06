@@ -38,7 +38,7 @@ var store = new MongoDBStore({
 // );
 const corsOptions = {
   origin: function (origin, callback) {
-    if (origin && origin.indexOf('https://aj-job.netlify.app') !== -1) {
+    if (origin && origin === 'https://aj-job.netlify.app') {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -47,6 +47,7 @@ const corsOptions = {
   credentials: true,
   methods: ['GET', 'POST', 'PATCH'],
 };
+
 
 app.use(cors(corsOptions));
 
