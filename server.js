@@ -53,7 +53,7 @@ app.use(session({
   secret:'893d64c310bcfdc2bd00e8a723b7c2b097f7d11d4963aae24dcefb3aac2dc9e081d87128e5761960b500cc0f1c02b97b89fb297184976c41b62c04ae60e1dc5c',
   resave:false,
   saveUninitialized: true,
-  cookie: { secure: false },
+  cookie: { secure: true },
   store: store
 }));
 app.set("trust proxy", 1);
