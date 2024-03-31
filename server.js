@@ -38,7 +38,7 @@ var store = new MongoDBStore({
 // );
 
 app.use(cors({
-  origin: 'https://aj-job.netlify.app',
+  origin: ['https://aj-job.netlify.app','https://ajjob.vercel.app/'],
   methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
