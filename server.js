@@ -113,7 +113,7 @@ var store = new MongoDBStore({
 
 // Enable CORS middleware
 app.use(cors({
-  origin: ['https://aj-job.netlify.app', 'https://ajjob.vercel.app'],
+  origin: ['https://aj-job.netlify.app', 'https://ajjob.vercel.app','http://localhost:3000'],
   methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
